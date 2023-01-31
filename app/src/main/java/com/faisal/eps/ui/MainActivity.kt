@@ -2,7 +2,7 @@ package com.faisal.eps.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.faisal.eps.NetworkManager
+import com.faisal.eps.util.NetworkManager
 import com.faisal.eps.R
 import com.faisal.eps.util.Constant
 import dagger.hilt.android.AndroidEntryPoint

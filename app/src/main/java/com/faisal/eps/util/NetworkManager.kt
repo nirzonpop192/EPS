@@ -1,4 +1,4 @@
-package com.faisal.eps
+package com.faisal.eps.util
 
 import android.content.Context
 import android.net.ConnectivityManager
