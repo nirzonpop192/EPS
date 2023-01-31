@@ -14,6 +14,7 @@ import com.faisal.eps.data.OrderRequestJson
 import com.faisal.eps.data.OrderResponseItem
 import com.faisal.eps.data.ShopRequestJson
 import com.faisal.eps.databinding.FragmentHomeBinding
+import com.faisal.eps.util.DateFormatManager
 import com.faisal.eps.util.NetworkManager
 import com.faisal.eps.view_model.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -49,7 +50,7 @@ class HomeFragment : Fragment() {
     override fun onResume() {
         super.onResume()
 
-
+        DateFormatManager.formatDateTime("2022-09-07T20:31:13.185782")
 
         if(NetworkManager.isNetConnectionAvailable(requireContext())){
             viewModel.loadShopData(ShopRequestJson(29,8,120))
