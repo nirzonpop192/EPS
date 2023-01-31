@@ -18,7 +18,7 @@ import javax.inject.Singleton
 object ApiModule {
 
     private val TAG=ApiModule::class.java.name
-    private const val BASE_URL="https://api.github.com/"
+    private const val BASE_URL="http://test.bdbizhub.com/Api/"
 
     @Provides
     @Singleton
