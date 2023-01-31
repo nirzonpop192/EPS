@@ -67,7 +67,10 @@ class HomeFragment : Fragment() {
             viewModel.isLoading.value=false
             //Log.e("Dim",it.shopName)
             binding.tvShopName.text=it.shopName
-            binding.tvAddress.text=it.address
+            if(it.address.isEmpty())
+                binding.tvAddress.text="N/A"
+            else
+                binding.tvAddress.text=it.address
 
 
         }
