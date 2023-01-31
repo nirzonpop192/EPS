@@ -1,6 +1,8 @@
 package com.faisal.eps.ui
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,7 +16,6 @@ import com.faisal.eps.data.OrderRequestJson
 import com.faisal.eps.data.OrderResponseItem
 import com.faisal.eps.data.ShopRequestJson
 import com.faisal.eps.databinding.FragmentHomeBinding
-import com.faisal.eps.util.DateFormatManager
 import com.faisal.eps.util.NetworkManager
 import com.faisal.eps.view_model.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -67,9 +68,9 @@ class HomeFragment : Fragment() {
             viewModel.isLoading.value=false
             //Log.e("Dim",it.shopName)
             binding.tvShopName.text=it.shopName
-            if(it.address.isEmpty())
-                binding.tvAddress.text="N/A"
-            else
+//            if(it.address.isNullOrEmpty())
+//                binding.tvAddress.text="N/A"
+//            else
                 binding.tvAddress.text=it.address
 
 
@@ -84,6 +85,7 @@ class HomeFragment : Fragment() {
                 list.clear()
                 for (i in 0..it.size-1) {
                     list.add(it.get(i))
+                    viewModel.addOrder(it.get(i))
                 }
                 mAdapter.updateData(list)
             }
@@ -92,6 +94,24 @@ class HomeFragment : Fragment() {
 
         }
 
+
+        HomeViewModel.orderList.observe(viewLifecycleOwner){
+
+           // viewModel.isLoading.value=false
+            Log.e("Dim", it.size.toString())
+
+            if(it.size!=0) {
+                list.clear()
+                for (i in 0..it.size-1) {
+                    list.add(it.get(i))
+                    viewModel.addOrder(it.get(i))
+                }
+                mAdapter.updateData(list)
+            }
+
+
+
+        }
 
         viewModel.isLoading.observe(viewLifecycleOwner){
             if(it)
@@ -134,6 +154,19 @@ class HomeFragment : Fragment() {
             }else Toast.makeText(context,"No internet found. please connect it",Toast.LENGTH_LONG).show()
 
         }
+
+        binding.edtSearch.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                if (s.toString().length>0)
+                    viewModel.searchOrder(s.toString())
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+        })
 
 
     }
