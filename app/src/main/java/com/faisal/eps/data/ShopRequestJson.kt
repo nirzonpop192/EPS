@@ -1,4 +1,4 @@
-package com.faisal.eps
+package com.faisal.eps.data
 
 data class ShopRequestJson(
     val CompanyID: Int,
