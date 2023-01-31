@@ -15,7 +15,7 @@ class HomeRepository @Inject constructor(
         private const val TAG="HomeRepository"
     }
 
-    suspend fun fetchRepositoryApi(body: ShopRequestJson): ShopResponse {
+    suspend fun fetchShopApi(body: ShopRequestJson): ShopResponse {
         return api.getShop(body)
     }
 

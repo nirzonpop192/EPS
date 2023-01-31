@@ -18,4 +18,6 @@ data class ShopResponse(
     val statusID: Int,
     val thana: String,
     val thanaID: Int
-)
+) {
+
+}
