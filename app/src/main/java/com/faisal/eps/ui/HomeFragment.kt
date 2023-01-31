@@ -50,7 +50,6 @@ class HomeFragment : Fragment() {
     override fun onResume() {
         super.onResume()
 
-        DateFormatManager.formatDateTime("2022-09-07T20:31:13.185782")
 
         if(NetworkManager.isNetConnectionAvailable(requireContext())){
             viewModel.loadShopData(ShopRequestJson(29,8,120))

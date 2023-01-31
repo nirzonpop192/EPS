@@ -11,7 +11,7 @@ class DateFormatManager {
     companion object{
         @SuppressLint("SimpleDateFormat")
         fun formatDateTime(rawData:String?):String?{
-            val input = SimpleDateFormat("yyyy-MM-dd'T'HH:mm.ssssss")
+            val input = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.ssssss")
             val output = SimpleDateFormat("MMM dd, yyyy HH:mm aa")
 
             if (rawData==null)

@@ -18,6 +18,7 @@ class HomeOrderAdapter (private var list : List<OrderResponseItem>
         val orderId : TextView = binding.tvOrder
         val price : TextView = binding.tvPrice
         val deliveryDate : TextView = binding.tvDate
+        val totalItem : TextView = binding.tvTotalItem
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -36,6 +37,7 @@ class HomeOrderAdapter (private var list : List<OrderResponseItem>
         holder.orderId.text="Order Id # ${list.get(position).bookingID.toString()}"
         holder.price.text="ট ${list.get(position).totalValue.toString()}"
         holder.deliveryDate.text=DateFormatManager.formatDateTime(list.get(position).cd)
+        holder.totalItem.text= "Total item:${list.get(position).totalItem.toString()}"
 
 
     }
