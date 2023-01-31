@@ -78,6 +78,7 @@ class HomeFragment : Fragment() {
             Log.e("Dim", it.size.toString())
 
             if(it.size!=0) {
+                list.clear()
                 for (i in 0..it.size-1) {
                     list.add(it.get(i))
                 }
@@ -110,12 +111,14 @@ class HomeFragment : Fragment() {
     private fun setListener(){
         binding.btnConfirm.setOnClickListener {
             if(NetworkManager.isNetConnectionAvailable(requireContext())){
+                clearList()
                 viewModel.loadOrderData(OrderRequestJson(29,8,12,120))
             }else Toast.makeText(context,"No internet found. please connect it",Toast.LENGTH_LONG).show()
 
         }
         binding.btnPartialDeliver.setOnClickListener {
             if(NetworkManager.isNetConnectionAvailable(requireContext())){
+                clearList()
                 viewModel.loadOrderData(OrderRequestJson(29,8,15,120))
             }else Toast.makeText(context,"No internet found. please connect it",Toast.LENGTH_LONG).show()
 
@@ -123,6 +126,7 @@ class HomeFragment : Fragment() {
         }
         binding.btnDelivered.setOnClickListener {
             if(NetworkManager.isNetConnectionAvailable(requireContext())){
+                clearList()
                 viewModel.loadOrderData(OrderRequestJson(29,8,9,120))
             }else Toast.makeText(context,"No internet found. please connect it",Toast.LENGTH_LONG).show()
 
@@ -133,7 +137,10 @@ class HomeFragment : Fragment() {
 
 
 
-
+private fun clearList(){
+    list.clear()
+    mAdapter.updateData(list)
+}
 
 
 }
