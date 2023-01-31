@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.faisal.eps.R
+import com.faisal.eps.data.ShopRequestJson
 import com.faisal.eps.databinding.FragmentHomeBinding
 import com.faisal.eps.view_model.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -57,10 +58,11 @@ class HomeFragment : Fragment() {
     override fun onResume() {
         super.onResume()
 
+
 //        if (Constant.SORT_BY.equals(Constant.DATE)) binding.btnSort.text=" sort by star"
 
 //        else binding.btnSort.text=" sort by date"
-    //    viewModel.loadData("Android",Constant.SORT_BY,"asc",10)
+        viewModel.loadData(ShopRequestJson(29,8,120))
 
 
         setObserver()
@@ -68,9 +70,11 @@ class HomeFragment : Fragment() {
 
     }
     fun setObserver(){
-//        HomeViewModel.response.observe(viewLifecycleOwner){
-//            Log.e(TAG, "onResume:  size of dim ${it.items.size}", )
-//            viewModel.isLoading.value=false
+        HomeViewModel.response.observe(viewLifecycleOwner){
+          //  Log.e(TAG, "onResume:  size of dim ${it.items.size}", )
+            viewModel.isLoading.value=false
+            Log.e("Dim",it.shopName)
+            binding.tvShopName.text=it.shopName
 //            if(it.items.isNotEmpty()){
 //                for (repositoryItem in it.items){
 //                    Log.e(TAG,"in loop")
@@ -81,8 +85,8 @@ class HomeFragment : Fragment() {
 //
 //                }
 //            }
-//
-//        }
+
+        }
 
 //        viewModel.pagingDataList.observe(viewLifecycleOwner){
 //
