@@ -1,7 +1,7 @@
 package com.faisal.eps.data
 
 data class ShopResponse(
-    val address: Any,
+    val address: String,
     val code: Any,
     val confirm: Int,
     val date: String,

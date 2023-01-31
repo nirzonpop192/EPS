@@ -7,34 +7,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import com.faisal.eps.R
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.faisal.eps.adapter.HomeOrderAdapter
+import com.faisal.eps.data.OrderRequestJson
+import com.faisal.eps.data.OrderResponseItem
 import com.faisal.eps.data.ShopRequestJson
 import com.faisal.eps.databinding.FragmentHomeBinding
 import com.faisal.eps.view_model.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 
-//class HomeFragment : Fragment() {
-//
-//
-//    override fun onCreateView(
-//        inflater: LayoutInflater, container: ViewGroup?,
-//        savedInstanceState: Bundle?
-//    ): View? {
-//        // Inflate the layout for this fragment
-//        return inflater.inflate(R.layout.fragment_home, container, false)
-//    }
-//
-//
-//}
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
 
 
-    private val JOB_ID: Int=123
-//    lateinit var mAdapter: RepositoryPagingAdapter
+    private var list : MutableList<OrderResponseItem> =mutableListOf()
 
-
+    private lateinit var mAdapter :HomeOrderAdapter
     private lateinit var binding: FragmentHomeBinding
     companion object{
         val TAG= HomeFragment::class.java.name
@@ -51,7 +40,7 @@ class HomeFragment : Fragment() {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
-       // setAdapter()
+       setAdapter()
         return binding.root
     }
 
@@ -62,7 +51,8 @@ class HomeFragment : Fragment() {
 //        if (Constant.SORT_BY.equals(Constant.DATE)) binding.btnSort.text=" sort by star"
 
 //        else binding.btnSort.text=" sort by date"
-        viewModel.loadData(ShopRequestJson(29,8,120))
+        viewModel.loadShopData(ShopRequestJson(29,8,120))
+        viewModel.loadOrderData(OrderRequestJson(29,8,12,120))
 
 
         setObserver()
@@ -70,21 +60,32 @@ class HomeFragment : Fragment() {
 
     }
     fun setObserver(){
-        HomeViewModel.response.observe(viewLifecycleOwner){
-          //  Log.e(TAG, "onResume:  size of dim ${it.items.size}", )
+        HomeViewModel.shopResponse.observe(viewLifecycleOwner){
+
             viewModel.isLoading.value=false
-            Log.e("Dim",it.shopName)
+            //Log.e("Dim",it.shopName)
             binding.tvShopName.text=it.shopName
-//            if(it.items.isNotEmpty()){
-//                for (repositoryItem in it.items){
-//                    Log.e(TAG,"in loop")
-//                    viewModel.addRepository(repositoryItem)
-//                    repositoryItem.license?.let { it1 -> viewModel.addLicense(it1) }
-//                    repositoryItem.owner?.let { it1 -> viewModel.addOwner(it1) }
-//
-//
-//                }
-//            }
+            binding.tvAddress.text=it.address
+
+
+        }
+
+        HomeViewModel.orderResponse.observe(viewLifecycleOwner){
+
+            viewModel.isLoading.value=false
+            Log.e("Dim", it.size.toString())
+
+            if(it.size!=0) {
+                for (i in 0..it.size) {
+                    list.add(it.get(i))
+                }
+                mAdapter.notifyDataSetChanged()
+            }
+
+
+//            binding.tvShopName.text=it.shopName
+//            binding.tvAddress.text=it.address
+
 
         }
 
@@ -104,15 +105,15 @@ class HomeFragment : Fragment() {
         }
     }
 
-//    fun setAdapter (){
-//        mAdapter=RepositoryPagingAdapter()
-//
-//        binding.rvRepositoryList.apply {
-//            this.layoutManager= LinearLayoutManager(requireContext())
-//            this.setHasFixedSize(true)
-//            this.adapter=mAdapter
-//        }
-//    }
+    fun setAdapter (){
+         mAdapter = HomeOrderAdapter(list)
+
+        binding.rvRepositoryList.apply {
+            this.layoutManager= LinearLayoutManager(requireContext())
+            this.setHasFixedSize(true)
+            this.adapter=mAdapter
+        }
+    }
 
     fun setListener(){
 //        binding.btnSort.setOnClickListener {

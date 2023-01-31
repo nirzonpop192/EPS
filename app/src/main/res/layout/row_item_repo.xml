@@ -16,32 +16,43 @@
             android:padding="8dp">
 
             <TextView
-                android:id="@+id/tv_star"
+                android:id="@+id/tv_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                tools:text="1"
+                tools:text="1hjj"
                />
 
             <TextView
-                android:id="@+id/tv_name"
+                android:id="@+id/tv_order"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
-                android:layout_toStartOf="@id/tv_star"
+                android:layout_toStartOf="@id/tv_price"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                tools:text="Title" />
+                tools:text="order" />
 
             <TextView
 
                 android:id="@+id/tv_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tv_name"
+                android:layout_below="@id/tv_order"
                 tools:text="Description" />
+
+            <TextView
+
+                android:id="@+id/tv_total_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_order"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="11dp"
+                tools:text="total item" />
 
         </RelativeLayout>
 

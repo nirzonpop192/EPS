@@ -2,7 +2,6 @@ package com.faisal.eps.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -10,13 +9,12 @@ import com.faisal.eps.R
 import com.faisal.eps.data.OrderResponseItem
 import com.faisal.eps.databinding.RowItemRepoBinding
 
-class HomeMovieAdapter (private var list : List<OrderResponseItem>
-                        ,private val mListener: OnItemClickListener?
-): RecyclerView.Adapter<HomeMovieAdapter.ViewHolder>() {
+class HomeOrderAdapter (private var list : List<OrderResponseItem>
+): RecyclerView.Adapter<HomeOrderAdapter.ViewHolder>() {
 
     class ViewHolder(binding: RowItemRepoBinding) : RecyclerView.ViewHolder(binding.root) {
 //        val moviePoster : ImageView = binding.ivMovie
-//        val movieTitle : TextView = binding.tvMovieTitle
+        val orderId : TextView = binding.tvOrder
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -32,11 +30,9 @@ class HomeMovieAdapter (private var list : List<OrderResponseItem>
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 //        Glide.with(holder.moviePoster).load(list.get(position).Poster).into(holder.moviePoster)
-//        holder.movieTitle.text=list.get(position).Title.toString()
+        holder.orderId.text=list.get(position).bookingID.toString()
 
-        holder.itemView.setOnClickListener {
-            mListener?.onItemClick(position)
-        }
+
     }
 
     fun updateData(list: List<OrderResponseItem>) {
@@ -44,7 +40,7 @@ class HomeMovieAdapter (private var list : List<OrderResponseItem>
         notifyDataSetChanged()
     }
 
-    interface OnItemClickListener {
-        fun onItemClick( position: Int)
-    }
+//    interface OnItemClickListener {
+//        fun onItemClick( position: Int)
+//    }
 }

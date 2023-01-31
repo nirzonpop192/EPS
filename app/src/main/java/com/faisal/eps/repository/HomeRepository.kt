@@ -1,5 +1,7 @@
 package com.faisal.eps.repository
 
+import com.faisal.eps.data.OrderRequestJson
+import com.faisal.eps.data.OrderResponse
 import com.faisal.eps.data.ShopRequestJson
 import com.faisal.eps.data.ShopResponse
 import com.faisal.eps.remote.EPSApi
@@ -17,6 +19,10 @@ class HomeRepository @Inject constructor(
 
     suspend fun fetchShopApi(body: ShopRequestJson): ShopResponse {
         return api.getShop(body)
+    }
+
+    suspend fun fetchOrderApi(body: OrderRequestJson): OrderResponse {
+        return api.getOrder(body)
     }
 
 

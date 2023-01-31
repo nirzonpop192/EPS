@@ -1,8 +1,9 @@
 package com.faisal.eps.view_model
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.faisal.eps.data.OrderRequestJson
+import com.faisal.eps.data.OrderResponse
 import com.faisal.eps.data.ShopRequestJson
 import com.faisal.eps.data.ShopResponse
 import com.faisal.eps.repository.HomeRepository
@@ -14,7 +15,8 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(private val repository: HomeRepository) : ViewModel(){
 
     companion object{
-        var response : MutableLiveData<ShopResponse> =MutableLiveData()
+        var shopResponse : MutableLiveData<ShopResponse> =MutableLiveData()
+        var orderResponse : MutableLiveData<OrderResponse> =MutableLiveData()
 
     }
     var isLoading:MutableLiveData<Boolean> =MutableLiveData()
@@ -38,12 +40,20 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository) 
 
 
     /**
-     * load method invoke the pager
+     * load method invoke the
      */
-    fun loadData(body: ShopRequestJson) {
+    fun loadShopData(body: ShopRequestJson) {
         isLoading.value=true
         viewModelScope.launch {
-            response.value= repository.fetchShopApi(body)
+            shopResponse.value= repository.fetchShopApi(body)
+
+        }
+    }
+
+    fun loadOrderData(body: OrderRequestJson) {
+        isLoading.value=true
+        viewModelScope.launch {
+            orderResponse.value= repository.fetchOrderApi(body)
 
 
         }
