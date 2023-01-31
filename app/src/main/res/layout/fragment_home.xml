@@ -16,7 +16,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnSort"
+            app:layout_constraintTop_toBottomOf="@+id/ll_button"
             tools:listitem="@layout/row_item_repo" />
 
 
@@ -31,9 +31,12 @@
             app:layout_constraintStart_toStartOf="@+id/rvRepositoryList"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
+        <TextView
+            android:textColor="#1E88E5"
+            android:textSize="18sp"
+            android:gravity="center"
             android:textAllCaps="false"
-            android:id="@+id/btnSort"
+            android:id="@+id/tv_shop_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -43,6 +46,31 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/progressBar"
             app:layout_constraintTop_toBottomOf="@+id/progressBar" />
+
+        <TextView
+            android:id="@+id/tv_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="@+id/tv_shop_name"
+            app:layout_constraintStart_toStartOf="@+id/tv_shop_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_shop_name" />
+
+        <LinearLayout
+            android:id="@+id/ll_button"
+            android:layout_width="409dp"
+            android:layout_height="54dp"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="@+id/tv_shop_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_address">
+            <Button
+                android:text=""
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
