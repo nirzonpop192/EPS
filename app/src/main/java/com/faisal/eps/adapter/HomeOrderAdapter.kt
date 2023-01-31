@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.faisal.eps.R
 import com.faisal.eps.data.OrderResponseItem
 import com.faisal.eps.databinding.RowItemRepoBinding
+import com.faisal.eps.util.DateFormatManager
 
 class HomeOrderAdapter (private var list : List<OrderResponseItem>
 ): RecyclerView.Adapter<HomeOrderAdapter.ViewHolder>() {
@@ -15,6 +16,8 @@ class HomeOrderAdapter (private var list : List<OrderResponseItem>
     class ViewHolder(binding: RowItemRepoBinding) : RecyclerView.ViewHolder(binding.root) {
 //        val moviePoster : ImageView = binding.ivMovie
         val orderId : TextView = binding.tvOrder
+        val price : TextView = binding.tvPrice
+        val deliveryDate : TextView = binding.tvDate
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -30,7 +33,9 @@ class HomeOrderAdapter (private var list : List<OrderResponseItem>
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 //        Glide.with(holder.moviePoster).load(list.get(position).Poster).into(holder.moviePoster)
-        holder.orderId.text=list.get(position).bookingID.toString()
+        holder.orderId.text="Order Id # ${list.get(position).bookingID.toString()}"
+        holder.price.text="ট ${list.get(position).totalValue.toString()}"
+        holder.deliveryDate.text=DateFormatManager.formatDateTime(list.get(position).cd)
 
 
     }
@@ -40,7 +45,5 @@ class HomeOrderAdapter (private var list : List<OrderResponseItem>
         notifyDataSetChanged()
     }
 
-//    interface OnItemClickListener {
-//        fun onItemClick( position: Int)
-//    }
+
 }

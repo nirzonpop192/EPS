@@ -58,16 +58,34 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_shop_name" />
 
         <LinearLayout
+            android:gravity="center"
             android:id="@+id/ll_button"
-            android:layout_width="409dp"
-            android:layout_height="54dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="@+id/tv_shop_name"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_address">
             <Button
-                android:text=""
+
+                android:layout_marginEnd="8dp"
+                android:id="@+id/btn_confirm"
+                android:text="C"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:layout_marginStart="8dp"
+                android:id="@+id/btn_partial_deliver"
+                android:text="PD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:layout_marginStart="8dp"
+                android:id="@+id/btn_delivered"
+                android:text="D"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
